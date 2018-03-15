@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Petit script pour installer les cartes gshhs de plus haute résolution et des villes supplémentaires
+# dans le répertoire /opt/zyGrib/maps/gshhs
+## Script to install gshhs maps in higher resolution in /opt/zyGrib/data/maps/gshhs and cities in /opt/zyGrib/data/gis
+
+# à utiliser après instalation du paquet zyGrib-xxx.deb
+# Informations complètes sur http://zygrib.org
+## to be used after zyGrib-xxx.deb
+## All info on http://zygrib.org
+
+# Auteur : Dominique Hausser <dominique@hausser.ch>
+# Date : 7 août 2008
+# Update : 02/09/2008; 05/12/2008, 03/07/2011
+
+# à faire tourner en root pour pouvoir écrire dans le répertoire /opt
+# ne pas oublier de le rendre exécutable : chmod +x gshhs_maps2_deb_install
+## use the script with root to be able to write in rep /opt
+## do not forget : chmod +x gshhs_install
+
+#Maps
+cd /opt/zyGrib/data/
+sudo wget http://zygrib.org/getfile.php?file=zyGrib_maps2.tgz
+sudo tar -xvvzf getfile.php?file=zyGrib_maps2.tgz
+sudo chown -R root:root maps/*
+sudo rm -rf getfile.php?file=zyGrib_maps2.tgz
+#Cities
+cd ./gis
+sudo wget http://www.zygrib.org/getfile.php?file=cities_1k-3k.txt.gz
+sudo wget http://www.zygrib.org/getfile.php?file=cities_300-1k.txt.gz
+sudo wget http://www.zygrib.org/getfile.php?file=cities_0-300.txt.gz
+sudo mv getfile.php?file=cities_1k-3k.txt.gz cities_1k-3k.txt.gz
+sudo mv getfile.php?file=cities_300-1k.txt.gz cities_300-1k.txt.gz
+sudo mv getfile.php?file=cities_0-300.txt.gz cities_0-300.txt.gz
+
+sudo chown -R root:root *
+exit 0

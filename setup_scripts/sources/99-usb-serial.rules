@@ -1,0 +1,9 @@
+# rule for the lambda board
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015",  SYMLINK+="lambda", GROUP="pi", OWNER="pi"
+
+# rules for the ftdi rs422 complus4 - attrs must be from a single parent
+# see - http://www.reactivated.net/writing_udev_rules.html
+SUBSYSTEM=="tty", ATTRS{interface}=="USB-COM422 Plus4", ATTRS{bInterfaceNumber}=="00", SYMLINK+="rs4220", GROUP="pi", OWNER="pi"
+SUBSYSTEM=="tty", ATTRS{interface}=="USB-COM422 Plus4", ATTRS{bInterfaceNumber}=="01", SYMLINK+="rs4221", GROUP="pi", OWNER="pi"
+SUBSYSTEM=="tty", ATTRS{interface}=="USB-COM422 Plus4", ATTRS{bInterfaceNumber}=="02", SYMLINK+="rs4222", GROUP="pi", OWNER="pi"
+SUBSYSTEM=="tty", ATTRS{interface}=="USB-COM422 Plus4", ATTRS{bInterfaceNumber}=="03", SYMLINK+="rs4223", GROUP="pi", OWNER="pi"

@@ -1,0 +1,25 @@
+# systemd service file to start RTL AIS
+
+[Unit]
+Description=RTL SDR AIS receiver.
+Wants=network.target
+Documentation=https://github.com/dgiardini/rtl-ais
+
+[Service]
+Type=simple
+# Run as normal pi user - feel free to change...
+User=pi
+Group=pi
+WorkingDirectory=/home/pi
+Nice=5
+ExecStart=/usr/local/bin/rtl_ais -g 60 -h 127.0.0.1
+# Use SIGINT to stop
+KillSignal=SIGINT
+# Auto restart on crash
+Restart=on-failure
+# Tag things in the log
+SyslogIdentifier=rtl_ais
+#StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target
